@@ -125,6 +125,12 @@
             <scope>test</scope>
         </dependency>
 
+
+        <dependency>
+            <groupId>commons-validator</groupId>
+            <artifactId>commons-validator</artifactId>
+            <version>1.7</version>
+        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>org.jsoup</groupId>-->
 <!--            <artifactId>jsoup</artifactId>-->
@@ -166,8 +172,6 @@
 <!--            <artifactId>tomcat-coyote</artifactId>-->
 <!--            <version>11.0.0-M13</version>-->
 <!--        </dependency>-->
-
-
     </dependencies>
 
     <build>
