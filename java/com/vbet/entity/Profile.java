@@ -22,7 +22,7 @@ public class Profile {
     private Long id;
 
     @Column(name = "login")
-    @Size(min = 4, max = 60, message = "Login should be more then 6 and less than 60")
+    @Size(min = 4, max = 20, message = "Login should be more then 6 and less than 20")
     private String login;
 
     @Column(name = "password")

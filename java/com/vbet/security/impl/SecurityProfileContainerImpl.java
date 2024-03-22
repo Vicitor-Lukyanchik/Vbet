@@ -70,7 +70,7 @@ public class SecurityProfileContainerImpl implements SecurityProfileContainer {
         List<SecurityProfile> allByProfile = findAllByProfile(profile);
         String token = generateToken(profile.getLogin());
 
-        while (findEqualToken(allByProfile, token).isEmpty()) {
+        while (findEqualToken(allByProfile, token).isPresent()) {
             token = generateToken(profile.getLogin());
         }
 
