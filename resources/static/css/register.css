@@ -176,7 +176,6 @@ body {
     width: 100%;
     font-weight: 700;
     border-radius: 5px;
-    pointer-events: none;
     text-transform: uppercase;
 }
 

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VBet</title>
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <link rel="stylesheet" th:href="@{/css/register.css?version=1}">
+    <link rel="stylesheet" th:href="@{/css/adapt/menu.css}">
+    <link rel="stylesheet" th:href="@{/css/adapt/register.css}">
+    <link rel="shortcut icon"th:href="@{/img/logo.svg}" type="image/x-icon">
+    <script type="text/javascript" th:src="@{/jquery/jquery-3.7.1.js}"></script>
+</head>
+<body>
+
+<header class="header">
+    <div class="container">
+        <div class="container__header">
+            <div class="header__name">
+                Регистрация
+            </div>
+            <div class="header__cross">
+                <a href="main.html"><img th:src="@{/img/Cross.svg}" alt="Cross" class="header__cross-img"></a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<form class="profile" th:method="POST" th:action="@{/register}" th:object="${register}">
+    <div class="container">
+        <div class="profile__item">
+            <div class="profile__item-name">Логин</div>
+            <div class="profile__item-input">
+                <div class="input__container">
+                    <input th:field="*{login}" type="text" class="profile__input profile__noninput" value=""
+                           placeholder="Введите логин"> </div>
+            </div>
+            <div class="profile__item-error" th:text="${errorLogin}"></div>
+            <div class="profile__item-description">
+                <div class="description__point"><img th:src="@{img/point.svg}" alt="Point" class="point"></div>
+                <div class="description__name">
+                    <div class="profile__container">от 4 до 20 символов</div>
+                </div>
+            </div>
+            <div class="profile__item-description">
+                <div class="description__point"><img th:src="@{img/point.svg}" alt="Point" class="point"></div>
+                <div class="description__name">
+                    <div class="profile__container">только цифры, буквы и символы (- _ .)</div>
+                </div>
+            </div>
+        </div>
+        <div class="profile__item">
+            <div class="profile__item-name">Email</div>
+            <div class="profile__item-input">
+                <div class="input__container">
+                    <input th:field="*{email}" type="text" class="profile__input profile__noninput" value=""
+                           placeholder="Введите email"></div>
+            </div>
+            <div class="profile__item-error" th:text="${errorEmail}"></div>
+            <div class="profile__item-description">
+                <div class="description__point"><img th:src="@{img/point.svg}" alt="Point" class="point"></div>
+                <div class="description__name">
+                    <div class="profile__container">от 4 до 60 символов</div>
+                </div>
+            </div>
+        </div>
+        <div class="profile__item">
+            <div class="profile__item-name">Пароль</div>
+            <div class="profile__item-input">
+                <div class="input__container">
+                    <input th:field="*{password}" id="passwordInput" type="password" class="profile__input" value="" placeholder="Введите пароль"></div>
+            </div>
+            <div class="profile__item-error" th:text="${errorPassword}"></div>
+            <div class="profile__item-description">
+                <div class="description__point"><img th:src="@{img/point.svg}" alt="Point" class="point"></div>
+                <div class="description__name">
+                    <div class="profile__container">от 4 до 60 символов</div>
+                </div>
+            </div>
+            <div class="profile__item-description">
+                <div class="description__point"><img th:src="@{img/point.svg}" alt="Point" class="point"></div>
+                <div class="description__name">
+                    <div class="profile__container">только цифры, буквы и символы (- _ .)</div>
+                </div>
+            </div>
+        </div>
+        <div class="profile__item">
+            <div class="profile__item-name">Повторите пароль</div>
+            <div class="profile__item-input">
+                <div class="input__container">
+                    <input th:field="*{repeatPassword}" id="repeatPasswordInput" type="password" class="profile__input" value="" placeholder="Введите пароль повторно"></div>
+            </div>
+            <div id="repeatError" class="profile__item-error profile__item-repeat-error" th:text="${errorRepeatPassword}"></div>
+            <div class="profile__item-description">
+                <div class="description__point"><img th:src="@{img/point.svg}" alt="Point" class="point"></div>
+                <div class="description__name">
+                    <div class="profile__container">от 4 до 60 символов</div>
+                </div>
+            </div>
+            <div class="profile__item-description">
+                <div class="description__point"><img th:src="@{img/point.svg}" alt="Point" class="point"></div>
+                <div class="description__name">
+                    <div class="profile__container">только цифры, буквы и символы (- _ .)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile__button">
+        <div class="container">
+            <div class="save__button">
+                <input value="Зарегистрироваться" type="submit" class="save__input">
+            </div>
+            <div class="login__question">
+                <div class="login__question-title">Уже есть аккаунт? </div>
+                <div class="login__question-link"><a th:href="@{/login}">Войти</a></div>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+
+<script>
+    $("html").on('click', function() {
+        var hasTouchScreen = false;
+
+        if ("maxTouchPoints" in navigator) {
+            hasTouchScreen = navigator.maxTouchPoints > 0;
+        }
+
+        if (hasTouchScreen) {
+            if($(".profile__input").is(":focus")){
+                $(".profile").css("margin-top", "90px");
+                $(".profile__item").css("margin-bottom", "30px");
+                $(".profile__container").css("margin", "5px 30px");
+                $(".description__point").css("padding", "5px 0");
+            } else{
+                $(".profile").css("margin-top", "110px");
+                $(".profile__item").css("margin-bottom", "40px");
+                $(".profile__container").css("margin", "9px 30px");
+                $(".description__point").css("padding", "9px 0");
+            }
+        }
+    });
+
+    $(".profile__item").on('click', function() {
+        $(this).find(".profile__input").focus();
+    });
+
+    $('#passwordInput').on('input',function(e){
+        controlRepeatPassword();
+    });
+
+    $('#repeatPasswordInput').on('input',function(e){
+        controlRepeatPassword();
+    });
+
+    function controlRepeatPassword() {
+        var password = $('#passwordInput').val();
+        var passwordRepeat = $('#repeatPasswordInput').val();
+
+        if(password != passwordRepeat) {
+            $("#repeatError").text("Пароли должны совпадать");
+        } else {
+            $("#repeatError").text("");
+        }
+    }
+</script>
+</html>

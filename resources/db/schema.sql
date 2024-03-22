@@ -24,12 +24,12 @@ DROP TABLE IF EXISTS profile CASCADE;
 CREATE TABLE profile
 (
     id       BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    login    VARCHAR(60)           NOT NULL,
-    password VARCHAR(60)           NOT NULL,
+    login    VARCHAR(20)           NOT NULL,
+    password VARCHAR(100)           NOT NULL,
     firstname VARCHAR(150),
     lastname VARCHAR(150),
     email VARCHAR(150),
-    balance DECIMAL NOT NULL,
+    balance DECIMAL(8,2) NOT NULL,
     dob DATE
 );
 
@@ -50,7 +50,7 @@ CREATE TABLE balance_transaction
 (
     id       BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     profile_id BIGINT REFERENCES profile(id),
-    amount DECIMAL NOT NULL,
+    amount DECIMAL(8,2) NOT NULL,
     is_positive BOOLEAN NOT NULL
 );
 
@@ -81,7 +81,7 @@ CREATE TABLE profile_bet
     id       BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     profile_id BIGINT REFERENCES profile(id),
     match_bet_id BIGINT REFERENCES match_bet(id),
-    amount DECIMAL NOT NULL
+    amount DECIMAL(8,2) NOT NULL
 );
 
 CREATE TABLE team
