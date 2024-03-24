@@ -34,7 +34,7 @@
             <div class="profile__item-name">Логин</div>
             <div class="profile__item-input">
                 <div class="input__container">
-                    <input id="login" type="text" class="profile__input profile__noninput" th:field="*{login}"
+                    <input id="login" type="text" autocomplete="off" class="profile__input profile__noninput" th:field="*{login}"
                            placeholder="Введите логин">
                 </div>
             </div>
@@ -56,7 +56,7 @@
             <div class="profile__item-name">Пароль</div>
             <div class="profile__item-input">
                 <div class="input__container">
-                    <input id="password" type="password" class="profile__input" th:field="*{password}"
+                    <input id="password" autocomplete="off" type="password" class="profile__input" th:field="*{password}"
                            placeholder="Введите пароль"></div>
             </div>
             <div class="profile__item-error" th:text="${errorPassword}"></div>

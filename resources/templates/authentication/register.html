@@ -35,7 +35,7 @@
             <div class="profile__item-input">
                 <div class="input__container">
                     <input th:field="*{login}" type="text" class="profile__input profile__noninput" value=""
-                           placeholder="Введите логин"> </div>
+                           placeholder="Введите логин" autocomplete="off"> </div>
             </div>
             <div class="profile__item-error" th:text="${errorLogin}"></div>
             <div class="profile__item-description">
@@ -56,7 +56,7 @@
             <div class="profile__item-input">
                 <div class="input__container">
                     <input th:field="*{email}" type="text" class="profile__input profile__noninput" value=""
-                           placeholder="Введите email"></div>
+                           placeholder="Введите email" autocomplete="off"></div>
             </div>
             <div class="profile__item-error" th:text="${errorEmail}"></div>
             <div class="profile__item-description">
@@ -70,7 +70,8 @@
             <div class="profile__item-name">Пароль</div>
             <div class="profile__item-input">
                 <div class="input__container">
-                    <input th:field="*{password}" id="passwordInput" type="password" class="profile__input" value="" placeholder="Введите пароль"></div>
+                    <input th:field="*{password}" id="passwordInput" type="password"
+                           class="profile__input" value="" placeholder="Введите пароль" autocomplete="off"></div>
             </div>
             <div class="profile__item-error" th:text="${errorPassword}"></div>
             <div class="profile__item-description">
@@ -90,7 +91,8 @@
             <div class="profile__item-name">Повторите пароль</div>
             <div class="profile__item-input">
                 <div class="input__container">
-                    <input th:field="*{repeatPassword}" id="repeatPasswordInput" type="password" class="profile__input" value="" placeholder="Введите пароль повторно"></div>
+                    <input th:field="*{repeatPassword}" id="repeatPasswordInput" type="password"
+                           class="profile__input" value="" placeholder="Введите пароль повторно" autocomplete="off"></div>
             </div>
             <div id="repeatError" class="profile__item-error profile__item-repeat-error" th:text="${errorRepeatPassword}"></div>
             <div class="profile__item-description">
