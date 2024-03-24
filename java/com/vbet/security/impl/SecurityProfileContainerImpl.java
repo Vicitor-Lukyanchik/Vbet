@@ -2,7 +2,6 @@ package com.vbet.security.impl;
 
 import com.vbet.dto.ProfileDto;
 import com.vbet.dto.SecurityProfile;
-import com.vbet.entity.Profile;
 import com.vbet.exception.SecurityException;
 import com.vbet.security.SecurityProfileContainer;
 import org.springframework.stereotype.Component;

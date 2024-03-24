@@ -5,11 +5,7 @@ import com.vbet.thread.AutomaticDataUpdater;
 import com.vbet.thread.ThreadStarter;
 import com.vbet.writer.FileWriter;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-
-import javax.annotation.PostConstruct;
-import java.io.File;
 
 @Configuration
 @RequiredArgsConstructor

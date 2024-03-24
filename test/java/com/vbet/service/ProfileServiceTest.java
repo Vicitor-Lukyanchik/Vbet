@@ -25,9 +25,6 @@ import static org.mockito.BDDMockito.given;
 public class ProfileServiceTest {
 
     @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    @Autowired
     private ProfileService profileService;
 
     @MockBean
@@ -384,6 +381,75 @@ public class ProfileServiceTest {
 
         RegisterRequestDto registerRequestDto = getRegisterRequestDto();
         registerRequestDto.setPassword("_._69_._");
+        ErrorProfileDto actual = profileService.register(registerRequestDto);
+
+        assertEquals(expected.getErrors(), actual.getErrors());
+    }
+
+    @Test
+    public void register_ShouldReturnErrorWithEmail_WhenEmailIsEmpty() {
+        Map<String, String> errors = new HashMap<>();
+        errors.put("email","Не может быть пустым");
+        ErrorProfileDto expected = ErrorProfileDto.builder().errors(errors).build();
+
+
+        RegisterRequestDto registerRequestDto = getRegisterRequestDto();
+        registerRequestDto.setEmail("");
+        ErrorProfileDto actual = profileService.register(registerRequestDto);
+
+        assertEquals(expected.getErrors(), actual.getErrors());
+    }
+
+    @Test
+    public void register_ShouldReturnErrorWithEmail_WhenEmailIsNotValid() {
+        Map<String, String> errors = new HashMap<>();
+        errors.put("email","Email некорректно введен");
+        ErrorProfileDto expected = ErrorProfileDto.builder().errors(errors).build();
+
+
+        RegisterRequestDto registerRequestDto = getRegisterRequestDto();
+        registerRequestDto.setEmail("lilpip@dip");
+        ErrorProfileDto actual = profileService.register(registerRequestDto);
+
+        assertEquals(expected.getErrors(), actual.getErrors());
+    }
+    @Test
+    public void register_ShouldReturnErrorWithEmail_WhenEmailSizeMoreThan150() {
+        Map<String, String> errors = new HashMap<>();
+        errors.put("email","Не более 150 символов");
+        ErrorProfileDto expected = ErrorProfileDto.builder().errors(errors).build();
+
+
+        RegisterRequestDto registerRequestDto = getRegisterRequestDto();
+        registerRequestDto.setEmail("asgdfghasfdhlkjgasfdghafsghdfashgdfhgasfhdfaliljsdkfkjdhlkshjhksdfhgddfsdfsdfdfsgdhgghhdjkshfkshdfkjhsdkjfhksdhfkjkhsdjfhksdhfkjsdfkhshjgfhdhgpip@mail.com");
+        ErrorProfileDto actual = profileService.register(registerRequestDto);
+
+        assertEquals(expected.getErrors(), actual.getErrors());
+    }
+    @Test
+    public void register_ShouldReturnErrorWithRepeatPassword_WhenPasswordNotCorrectRepeat() {
+        Map<String, String> errors = new HashMap<>();
+        errors.put("repeatPassword","Пароли должны совпадать");
+        ErrorProfileDto expected = ErrorProfileDto.builder().errors(errors).build();
+
+
+        RegisterRequestDto registerRequestDto = getRegisterRequestDto();
+        registerRequestDto.setRepeatPassword("user1");
+        ErrorProfileDto actual = profileService.register(registerRequestDto);
+
+        assertEquals(expected.getErrors(), actual.getErrors());
+    }
+
+    @Test
+    public void register_ShouldReturnErrorWithLogin_WhenLoginIsExist() {
+        Map<String, String> errors = new HashMap<>();
+        errors.put("login","Пользователь с таким логином уже найден");
+        ErrorProfileDto expected = ErrorProfileDto.builder().errors(errors).build();
+
+        given(roleService.findByName(isA(String.class))).willReturn(getRoles());
+        given(profileRepository.findByLogin(isA(String.class))).willReturn(Optional.of(getProfile()));
+
+        RegisterRequestDto registerRequestDto = getRegisterRequestDto();
         ErrorProfileDto actual = profileService.register(registerRequestDto);
 
         assertEquals(expected.getErrors(), actual.getErrors());

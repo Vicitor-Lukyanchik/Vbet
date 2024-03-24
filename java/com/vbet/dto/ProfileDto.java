@@ -6,7 +6,6 @@ import com.vbet.entity.Role;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.OneToMany;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;

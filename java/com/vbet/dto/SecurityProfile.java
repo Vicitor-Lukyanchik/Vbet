@@ -1,6 +1,5 @@
 package com.vbet.dto;
 
-import com.vbet.entity.Profile;
 import lombok.Builder;
 import lombok.Data;
 

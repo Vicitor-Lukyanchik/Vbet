@@ -36,6 +36,6 @@ public class Match {
     @OneToMany(mappedBy = "match")
     private List<MatchTeam> matchTeams;
 
-    @ManyToMany(mappedBy = "matches", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "matches", fetch = FetchType.LAZY)
     private List<Tour> tours;
 }

@@ -31,7 +31,7 @@ public class ProfileServiceImpl implements ProfileService {
     private static final String INVALID_PASSWORDS_MESSAGE = "Пароли должны совпадать";
     private static final String INVALID_EMAIL_MESSAGE = "Email некорректно введен";
     private static final String PROFILE_NOT_FOUND_BY_LOGIN_MESSAGE = "Пользователь с таким логином не найден";
-    private static final String PROFILE_FOUND_BY_USERNAME_MESSAGE = "Пользователь с таким логином уже не найден";
+    private static final String PROFILE_FOUND_BY_USERNAME_MESSAGE = "Пользователь с таким логином уже найден";
     private static final String PROFILE_NOT_FOUND_BY_ID_MESSAGE = "Пользователь с таким id не найден : ";
     private static final String MIN_SIZE_MESSAGE = "Не менее";
     private static final String MAX_SIZE_MESSAGE = "Не более";
@@ -107,10 +107,10 @@ public class ProfileServiceImpl implements ProfileService {
         Map<String, String> errors = new HashMap<>();
         if (email.isEmpty()) {
             errors.put("email", CANT_BE_EMPTY_MESSAGE);
+        } else if (email.length() > MAX_EMAIL_SIZE) {
+            errors.put("email", MAX_SIZE_MESSAGE + SPACE + MAX_EMAIL_SIZE + SPACE + SYMBOLS_MESSAGE);
         } else if (!EmailValidator.getInstance().isValid(email)) {
             errors.put("email", INVALID_EMAIL_MESSAGE);
-        } else if (email.length() > MAX_EMAIL_SIZE) {
-            errors.put("email", MAX_SIZE_MESSAGE);
         }
         return errors;
     }

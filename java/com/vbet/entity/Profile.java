@@ -52,7 +52,7 @@ public class Profile {
     @Column(name = "dob")
     private LocalDate dob;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "profile_role",
             joinColumns = {@JoinColumn(name = "profile_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})

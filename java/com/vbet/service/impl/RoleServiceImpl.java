@@ -1,11 +1,10 @@
 package com.vbet.service.impl;
 
 import com.vbet.entity.Role;
-import com.vbet.repository.ProfileRepository;
+
 import com.vbet.repository.RoleRepository;
 import com.vbet.service.RoleService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
